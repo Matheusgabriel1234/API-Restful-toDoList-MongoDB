@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Matheusgabriel1234.workshop.domain.User;
+import com.Matheusgabriel1234.workshop.dto.UserDTO;
 import com.Matheusgabriel1234.workshop.repository.UserRepository;
 import com.Matheusgabriel1234.workshop.service.exception.ObjectNotFound;
+import com.mongodb.DuplicateKeyException;
 
 @Service
 public class UserService {
 
+	
+	
 	
 	@Autowired
 	UserRepository repo;
@@ -29,6 +33,18 @@ public class UserService {
 	}
 	
 	public User insert(User obj) {
-		return repo.insert(obj);
+		try {
+			return repo.save(obj);
+		}catch(DuplicateKeyException e){
+      throw new IllegalArgumentException("Esse email ja foi cadastrado", e);			
+		}
+		
+	
 	}
+	
+	public User fromDTO(UserDTO obj) {
+		return new User(obj.getId(),obj.getEmail(),obj.getSenha(),obj.getUsername());
+	}
+	
+
 }

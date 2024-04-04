@@ -55,6 +55,10 @@ public class UserDTO implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 	
+	public UserDTO() {
+		
+	}
+	
 	public UserDTO(User obj) {
 		id = obj.getId();
 		email =  obj.getEmail();
