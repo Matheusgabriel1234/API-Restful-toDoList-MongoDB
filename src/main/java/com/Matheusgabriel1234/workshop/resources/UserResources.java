@@ -18,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.Matheusgabriel1234.workshop.domain.User;
 import com.Matheusgabriel1234.workshop.dto.UserDTO;
 import com.Matheusgabriel1234.workshop.service.UserService;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/users")
@@ -56,4 +58,13 @@ public class UserResources {
 		serv.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@PathVariable String id, @RequestBody UserDTO objDTO){
+		User obj = serv.fromDTO(objDTO);
+		obj.setId(id);
+		obj = serv.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+	
 }
