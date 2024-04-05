@@ -46,5 +46,10 @@ public class UserService {
 		return new User(obj.getId(),obj.getEmail(),obj.getSenha(),obj.getUsername());
 	}
 	
+	public void delete(String id) {
+		findById(id);
+		repo.deleteById(id);
+	}
+	
 
 }
