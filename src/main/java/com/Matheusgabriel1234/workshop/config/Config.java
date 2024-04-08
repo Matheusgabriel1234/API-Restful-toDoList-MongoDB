@@ -36,7 +36,7 @@ public class Config implements CommandLineRunner{
 		
 
 		User eduarda = new User(null,"eduarda@example.com","eduarda122313","EduardaCcato1234");
-		
+		repo.saveAll(Arrays.asList(matheus,luiza,eduarda));
 	
 		
 		Post post1 = new Post(null,"Estudos de programação", "Hoje devo estudar no minimo 4 horas de programação",sdf.parse("08/04/2024"), new AuthorDTO(eduarda));
@@ -47,7 +47,7 @@ public class Config implements CommandLineRunner{
 	  eduarda.getPost().addAll(Arrays.asList(post2));
 	  postrepo.saveAll(Arrays.asList(post1,post2));
 	  
-		repo.saveAll(Arrays.asList(matheus,luiza,eduarda));
+		
 		
 	}
 
