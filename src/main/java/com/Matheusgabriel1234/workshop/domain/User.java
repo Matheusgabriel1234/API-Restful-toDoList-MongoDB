@@ -1,10 +1,13 @@
 package com.Matheusgabriel1234.workshop.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="User")
@@ -19,7 +22,25 @@ private String id;
 	@Indexed(unique=true)
 private String email;
 private String password;
+@Indexed(unique=true)
 private String username;
+
+
+
+@DBRef(lazy=true)
+List<Post> post = new ArrayList<>();
+
+
+
+
+
+public List<Post> getPost() {
+	return post;
+}
+
+public void setPost(List<Post> post) {
+	this.post = post;
+}
 
 public String getUsername() {
 	return username;
